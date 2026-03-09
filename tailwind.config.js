@@ -6,16 +6,20 @@ export default {
   ],
   theme: {
     extend: {
+
       colors: {
-        kiosk: {
-          primary: "#1E3A8A",
-          secondary: "#2563EB",
-          background: "#0F172A",
-          card: "#FFFFFF",
-          text: "#0B1220",
-          accent: "#38BDF8"
+
+        gye: {
+          primary: "#0A2540",     // azul profundo
+          accent: "#5BC0EB",      // azul celeste
+          card: "#EAF6FF",        // fondo tarjetas
+          cardHover: "#D4EDFF",
+          text: "#0A2540",
+          white: "#FFFFFF"
         }
+
       }
+
     },
   },
   plugins: [],

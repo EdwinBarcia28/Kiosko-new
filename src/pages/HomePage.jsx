@@ -1,44 +1,49 @@
-import KioskLayout from "../layouts/KioskLayout"
-import ServiceCard from "../components/ServiceCard"
+import KioskLayout from "../layouts/KioskLayout";
+import ServiceCard from "../components/ServiceCard";
+import baby from "../assets/baby.png"
+import boda from "../assets/matrimonio.png"
+import defuncion from "../assets/defuncion.png"
+import identidad from "../assets/identidad.png"
+import { useNavigate } from "react-router-dom";
 
-export default function HomePage(){
+export default function HomePage() {
 
-  return(
+  const navigate = useNavigate()
 
+  return (
     <KioskLayout>
+      <div className="flex flex-col items-center gap-16">
+        <h1
+          className="
+        text-white
+        text-4xl
+        md:text-5xl
+        font-bold
+        text-center
+        "
+        >
+          Escoja el tipo de certificado
+        </h1>
 
-      <h1 className="text-white text-5xl font-bold mb-16">
+        <div
+          className="
+            grid
+            grid-cols-1
+            md:grid-cols-2
+            gap-12
+            justify-items-center
+            mx-auto
+          "
+        >
+          <ServiceCard icon={baby} title="Nacimiento" onClick={()=>navigate("/cedula/nacimiento")} />
 
-        Kiosco de Certificados
+          <ServiceCard icon={boda} title="Matrimonio" onClick={()=>navigate("/cedula/matrimonio")} />
 
-      </h1>
+          <ServiceCard icon={defuncion} title="Defunción" onClick={()=>navigate("/cedula/defuncion")} />
 
-      <div className="grid grid-cols-2 gap-10">
-
-        <ServiceCard
-          icon="👶"
-          title="Nacimiento"
-        />
-
-        <ServiceCard
-          icon="💍"
-          title="Matrimonio"
-        />
-
-        <ServiceCard
-          icon="⚰️"
-          title="Defunción"
-        />
-
-        <ServiceCard
-          icon="🪪"
-          title="Identidad"
-        />
-
+          <ServiceCard icon={identidad} title="Identidad" onClick={()=>navigate("/cedula/identidad")} />
+        </div>
       </div>
-
     </KioskLayout>
-
-  )
-
+  );
 }

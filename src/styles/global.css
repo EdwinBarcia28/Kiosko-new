@@ -3,8 +3,7 @@
 @tailwind utilities;
 
 body{
-  background:#0F172A;
-  font-family: system-ui, sans-serif;
+  background:#0A2540;
 }
 
 .kiosk-container{

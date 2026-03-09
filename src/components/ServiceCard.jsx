@@ -1,31 +1,34 @@
-export default function ServiceCard({icon,title,onClick}){
+export default function ServiceCard({ icon, title, onClick }) {
 
-  return(
+  return (
 
     <button
       onClick={onClick}
       className="
-      w-72
-      h-44
-      bg-kiosk-card
+      w-80
+      h-48
       rounded-2xl
+      bg-white
       shadow-xl
       flex
       flex-col
       items-center
       justify-center
-      gap-3
-      text-kiosk-text
+      gap-4
+      text-[#0A2540]
       text-xl
       font-semibold
-      hover:scale-105
       transition
+      duration-200
+      hover:scale-105
+      hover:bg-sky-50
       "
     >
 
-      <div className="text-5xl">
-        {icon}
-      </div>
+      <img
+        src={icon}
+        className="h-28 w-28 object-contain"
+      />
 
       {title}
 

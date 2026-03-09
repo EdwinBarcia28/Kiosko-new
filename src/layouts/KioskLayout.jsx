@@ -1,10 +1,33 @@
-export default function KioskLayout({children}){
+import Header from "../components/Header";
 
-  return(
+export default function KioskLayout({ children }) {
 
-    <div className="kiosk-container">
+  return (
 
-        {children}
+    <div className="
+    bg-[#0F3B63]
+    min-h-screen
+    flex
+    flex-col
+    items-center
+    ">
+
+      <div className="w-full max-w-6xl px-8 pt-10">
+
+        <Header />
+
+        <div className="
+        flex
+        items-center
+        justify-center
+        min-h-[70vh]
+        ">
+
+          {children}
+
+        </div>
+
+      </div>
 
     </div>
 
