@@ -1,27 +1,30 @@
 import { useState } from "react"
+import { useLocation } from "react-router-dom"
 import KioskLayout from "../layouts/KioskLayout"
-import { useNavigate } from "react-router-dom"
 
-export default function CedulaPage(){
+export default function CodigoDactilarPage(){
 
-  const [cedula,setCedula] = useState("")
-  const navigate = useNavigate()
+  const location = useLocation()
+  const cedula = location.state?.cedula || ""
+
+  const [codigo,setCodigo] = useState("")
 
   const agregarNumero = (num)=>{
-    if(cedula.length >= 10) return
-    setCedula(cedula + num)
+    if(codigo.length >= 4) return
+    setCodigo(codigo + num)
   }
 
   const borrar = ()=>{
-    setCedula(cedula.slice(0,-1))
+    setCodigo(codigo.slice(0,-1))
+  }
+
+  const bebe = ()=>{
+    setCodigo("X")
   }
 
   const aceptar = ()=>{
-    console.log("Cedula ingresada:", cedula)
-    navigate("/dactilar", {
-      state:{ cedula }
-    })
-    // aquí luego podrás hacer la consulta a la API
+    console.log("Cedula:", cedula)
+    console.log("Codigo dactilar:", codigo)
   }
 
   return(
@@ -31,19 +34,18 @@ export default function CedulaPage(){
       <div className="flex flex-col items-center gap-10">
 
         <h1 className="text-white text-4xl font-bold">
-          Ingrese número de cédula
+          Ingrese código dactilar
         </h1>
 
         <input
-          value={cedula}
+          value={codigo}
           readOnly
           className="
-          w-[500px]
+          w-[400px]
           text-center
           text-4xl
           p-6
           rounded-xl
-          outline-none
           "
         />
 
@@ -69,7 +71,25 @@ export default function CedulaPage(){
             </button>
           ))}
 
+          {/* BOTON BEBE */}
+
+          <button
+            onClick={bebe}
+            className="
+            w-32
+            h-24
+            bg-yellow-500
+            text-white
+            text-2xl
+            rounded-xl
+            shadow-lg
+            "
+          >
+            X
+          </button>
+
           {/* BOTON 0 */}
+
           <button
             onClick={()=>agregarNumero(0)}
             className="
@@ -79,13 +99,13 @@ export default function CedulaPage(){
             text-3xl
             rounded-xl
             shadow-lg
-            hover:bg-sky-100
             "
           >
             0
           </button>
 
-          {/* BOTON BORRAR */}
+          {/* BORRAR */}
+
           <button
             onClick={borrar}
             className="
@@ -93,7 +113,7 @@ export default function CedulaPage(){
             h-24
             bg-red-500
             text-white
-            text-2xl
+            text-xl
             rounded-xl
             shadow-lg
             "
@@ -101,9 +121,9 @@ export default function CedulaPage(){
             Borrar
           </button>
 
-          {/* BOTON ACEPTAR SOLO SI HAY 10 DIGITOS */}
+          {/* ACEPTAR */}
 
-          {cedula.length === 10 && (
+          {(codigo.length === 4 || codigo === "X") && (
             <button
               onClick={aceptar}
               className="
@@ -111,7 +131,7 @@ export default function CedulaPage(){
               h-24
               bg-green-600
               text-white
-              text-2xl
+              text-xl
               rounded-xl
               shadow-lg
               "
