@@ -1,10 +1,12 @@
 import { useState } from "react"
-import { useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import KioskLayout from "../layouts/KioskLayout"
 
 export default function CodigoDactilarPage(){
 
   const location = useLocation()
+  const navigate = useNavigate()
+
   const cedula = location.state?.cedula || ""
 
   const [codigo,setCodigo] = useState("")
@@ -23,9 +25,21 @@ export default function CodigoDactilarPage(){
   }
 
   const aceptar = ()=>{
-    console.log("Cedula:", cedula)
-    console.log("Codigo dactilar:", codigo)
-  }
+
+  console.log("Cedula:", cedula)
+  console.log("Codigo dactilar:", codigo)
+
+const ejemploPDF = "/pdf/CERTIFICADO_PRUEBA.pdf"
+
+  navigate("/certificado",{
+    state:{
+      cedula,
+      codigo,
+      pdfUrl: ejemploPDF
+    }
+  })
+
+}
 
   return(
 
